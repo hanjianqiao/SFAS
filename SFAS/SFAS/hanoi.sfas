@@ -1,0 +1,101 @@
+;void hanoi(int n, char a, char b, char c){
+;	if(n == 1){
+;		move(a, c);
+;	}else{
+;		hanoi(n - 1, a, c, b);
+;		move(a, c);
+;		hanoi(n - 1, b, a, c);
+;	}
+;}
+
+	innum
+	in
+	in
+	in
+	call		hanoi ;
+	pop			5
+	halt
+	
+hanoi:
+	local		n as 1		;参数
+	local		a as 2
+	local		b as 3
+	local		c as 4
+	
+	pusht		1			;导入参数
+	lstore		c ;
+	pop			1
+	
+	pusht		2
+	lstore		b ;
+	pop			1
+	
+	pusht		3
+	lstore		a ;
+	pop			1
+	
+	pusht		4
+	lstore		n ;
+	pop			1
+	
+	lpushp		n			;比较n>1
+	push		1
+	grt
+	jtruepop	great1 ;
+	pop			1
+	
+	lpushp		a 			;n == 1
+	lpushp		c 			;
+	call		move 		;move(a, c)
+	pop			3
+	jmp			hanoiend 	;
+	
+great1:	
+	lpushp		n ;
+	push		1
+	sub
+	lpushp		a ;
+	lpushp		c ;
+	lpushp		b ;
+	call		hanoi 		;hanoi(n - 1, a, c, b)
+	pop			5
+	
+	lpushp		a ;
+	lpushp		c ;
+	call		move ;
+	pop			3
+	
+	lpushp		n ;
+	push		1
+	sub
+	lpushp		b ;
+	lpushp		a ;
+	lpushp		c ;
+	call		hanoi ;
+	pop			5
+	
+hanoiend:
+	push		0
+	ret			1
+	
+move:
+	local		a as 1
+	local		c as 2
+	pusht		1			;导入参数
+	lstore		c ;
+	pop			1
+	
+	pusht		2
+	lstore		a ;
+	pop			1
+	lpushp		a ;
+	out
+	lpushp		c ;
+	out
+	push		0x0a ;
+	out
+	
+	pop			3
+	
+	push		0
+	ret			1

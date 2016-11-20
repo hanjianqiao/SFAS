@@ -1,0 +1,100 @@
+		GLOBAL	hello
+_hello:
+		DATA	i
+		DATA	j
+		DATA	v
+		DATA	x
+		LOCAL	t0	AS	1
+		LOCAL	t1	AS	2
+		LOCAL	t2	AS	3
+		LOCAL	t3	AS	4
+		LOCAL	t4	AS	5
+		LOCAL	t5	AS	6
+		LOCAL	t6	AS	7
+		LOCAL	t7	AS	8
+L1:
+			PUSH	0
+		STORE	i
+		POP	1
+L3:
+			PUSH	10
+		STORE	j
+		POP	1
+L4:
+L6:
+			PUSHP	i
+		PUSH	1
+		ADD
+		STORE	i
+		POP	1
+L8:
+			PUSHP	i
+		PUSH	5
+		LESSE
+		JTRUEPOP	L6
+		POP	1
+L7:
+			PUSHP	j
+		PUSH	1
+		SUB
+		STORE	j
+		POP	1
+L10:
+			PUSHP	j
+		PUSH	5
+		GRTE
+		JTRUEPOP	L7
+		POP	1
+L9:
+			PUSHP	i
+		PUSHP	j
+		GRTE
+		JFALSEPOP	L4
+		POP	1
+L11:
+			JMP	L5
+			JMP	L4
+L5:
+			PUSH	0
+		STORE	v
+		POP	1
+L12:
+			PUSHP	i
+		PUSH	1
+		ADD
+		STORE	i
+		POP	1
+L13:
+			PUSHP	i
+		PUSHP	j
+		SUB
+		LSTORE	t1
+		POP	1
+			LPUSHP	t1
+		PUSH	11
+		ADD
+		STORE	i
+		POP	1
+L14:
+			PUSHP	j
+		PUSH	3
+		ADD
+		STORE	j
+		POP	1
+L15:
+			PUSHP	j
+		PUSHP	i
+		ADD
+		LSTORE	t2
+		POP	1
+			LPUSHP	t2
+		PUSH	2
+		ADD
+		STORE	i
+		POP	1
+L16:
+			PUSHP	i
+		OUTNUM
+L2:
+		HALT
+

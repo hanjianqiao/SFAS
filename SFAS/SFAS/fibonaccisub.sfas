@@ -1,0 +1,13 @@
+POP 2
+				HALT
+	fib:							;这时栈顶为返回地址，下一个为输入参数，要取的数列第N个元素
+				local num as 1
+				local res as 2
+				local res2 as 3
+				PUSHT 1				; 第一个参数入栈		1
+				LSTORE num			; 保存到参数num			1
+				PUSH 1				; 1入栈					2
+				LESSE				; N <= 1				1
+				JTRUEPOP less1		; 小于等于1的处理		1
+				POP 1				;						0
+				LPUSHP num			; num入栈				1

@@ -1,0 +1,62 @@
+				
+				data hello = 43				; 栈变化
+				data * = 'ello '
+				data * = 'world\n'
+				data * = 0
+				
+				
+				INNUM 				; 读取数字				1
+				CALL fib
+				OUTNUM				;						2
+				POP 2
+				
+				PUSH hello			; hello 指针入栈			1
+	readchr:	PUSHV					; 栈顶指向的数据入栈	2
+				JFALSE end			; 如果数据为0，结束		2
+				OUT					; 输出栈顶			2
+				POP 1				;					1
+				PUSH 1				; 立即数1入栈			2
+				ADD					; 指向hello下一个位置	1
+				JMP readchr			; 读取下一个字符		1
+	end:		POP 2					; 清理堆栈			0
+				HALT
+				
+								; fibonacci.asm实现以下功能：
+				; int fib(int n) {
+				;    if (n <= 1) return 1;
+				;    return fib(n-1) + fib(n-2)
+				; }
+				
+
+	fib:							;这时栈顶为返回地址，下一个为输入参数，要取的数列第N个元素
+				local num as 1
+				local res as 2
+				local res2 as 3
+				PUSHT 1				; 第一个参数入栈		1
+				LSTORE num			; 保存到参数num			1
+				PUSH 1				; 1入栈					2
+				LESSE				; N <= 1				1
+				JTRUEPOP less1		; 小于等于1的处理		1
+				POP 1				;						0
+				LPUSHP num			; num入栈				1
+
+				PUSH 1				; 1入栈					2
+				SUB					; N-1					1
+				CALL fib
+				LSTORE res			; 保存到res				2
+				POP 2				; 清理fib返回值及call之前压入的值 0
+
+				LPUSHP num			; num入栈				1
+				PUSH 2				; 1入栈					2
+				SUB					; N-2					1
+				CALL fib			; 取得fib(N-2)			2
+				LSTORE res2			; 保存到res				2
+				POP 2				; 清理fib返回值及call之前压入的值 0
+				
+				LPUSHP res			;						1
+				LPUSHP res2			;						2
+				ADD					; res+res2				1
+				RET 1
+	less1:							;						0
+				PUSH 1				; 返回1					1
+				RET 1

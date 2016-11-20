@@ -1,0 +1,23 @@
+				
+				data hello = 43				; 栈变化
+				data * = 'ello '
+				data * = 'world\n'
+				data * = 0
+				
+				extern	fib
+				
+				INNUM 				; 读取数字				1
+				CALL fib
+				OUTNUM				;						2
+				POP 2
+				
+				PUSH hello			; hello 指针入栈			1
+	readchr:	PUSHV					; 栈顶指向的数据入栈	2
+				JFALSE end			; 如果数据为0，结束		2
+				OUT					; 输出栈顶			2
+				POP 1				;					1
+				PUSH 1				; 立即数1入栈			2
+				ADD					; 指向hello下一个位置	1
+				JMP readchr			; 读取下一个字符		1
+	end:		POP 2					; 清理堆栈			0
+				HALT

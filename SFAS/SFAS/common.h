@@ -1,0 +1,28 @@
+#ifndef COMMON_H
+#define	COMMON_H
+
+// 虚拟机机器指令表
+enum CODE{
+	NOP = 0, NEG, ADD, SUB, MUL, DIV, MOD, NOT,
+	LESS, GRT, LESSE, GRTE, EQU, NEQU, AND, OR,
+	BNOT, BAND, BOR, BXOR, BLSHF, BRSHF, BSRSHF, PUSH,
+	PUSHP, PUSHV, PUSHT, COPYN, COPYRN, POP, STORE, STOREV,
+	HALT, JMP, JTRUE, JFALSE, JTRUEPOP, JFALSEPOP, CALL, RET,
+	LPUSHP, LPUSHV, LSTORE, LSTOREV, IN, INNUM, OUT, OUTNUM,
+};
+
+//由lex词法分析器给调用者返回的记号种类的枚举类型定义
+//	ASMCODE:汇编指令		LABEL:定义地址标号			REFLABEL:引用地址标号
+//	PNUM:正数字标识			NNUM：负数标识				ID:标识符				
+//	CMNT:注释语名标识		UNKNOWN:不可识别的标号		SDATA:静态变量
+//	INCLUDE:include file	EXTERN：外部符号			GLOBAL：全局符号
+enum tokentype {
+	ASMCODE, LABEL, REFLABEL,
+	PNUM, NNUM, CMNT,
+	LOCALVAL, SDATA, OPER,
+	UNKNOWN, INCLUDE, EXTERN,
+	GLOBAL,
+};
+
+#endif // !COMMON_H
+
