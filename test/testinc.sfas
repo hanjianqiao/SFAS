@@ -1,4 +1,4 @@
-				; fibonacci.asm实现以下功能：
+				; fibonacci.asm implement functions:
 				; int fib(int n) {
 				;    if (n <= 1) return 1;
 				;    return fib(n-1) + fib(n-2)
@@ -6,35 +6,35 @@
 				
 				global fib
 
-	fib:							;这时栈顶为返回地址，下一个为输入参数，要取的数列第N个元素
+	fib:							;return address at top of stack, next is input parameter n
 				local num as 1
 				local res as 2
 				local res2 as 3
-				PUSHT 1				; 第一个参数入栈		1
-				LSTORE num			; 保存到参数num			1
-				PUSH 1				; 1入栈					2
+				PUSHT 1				; push first parameter	1
+				LSTORE num			; save to num			1
+				PUSH 1				; push 1				2
 				LESSE				; N <= 1				1
-				JTRUEPOP less1		; 小于等于1的处理		1
+				JTRUEPOP less1		; <= 1					1
 				POP 1				;						0
-				LPUSHP num			; num入栈				1
+				LPUSHP num			; pop num				1
 
-				PUSH 1				; 1入栈					2
+				PUSH 1				; push 1				2
 				SUB					; N-1					1
 				CALL fib
-				LSTORE res			; 保存到res				2
-				POP 2				; 清理fib返回值及call之前压入的值 0
+				LSTORE res			; save to res			2
+				POP 2				; clear fib return value and the value pushed before call			 0
 
-				LPUSHP num			; num入栈				1
-				PUSH 2				; 1入栈					2
+				LPUSHP num			; push num				1
+				PUSH 2				; push 1				2
 				SUB					; N-2					1
-				CALL fib			; 取得fib(N-2)			2
-				LSTORE res2			; 保存到res				2
-				POP 2				; 清理fib返回值及call之前压入的值 0
+				CALL fib			; get fib(N-2)			2
+				LSTORE res2			; save to res			2
+				POP 2				; clear fib return value and the value pushed before call			 0
 				
 				LPUSHP res			;						1
 				LPUSHP res2			;						2
 				ADD					; res+res2				1
 				RET 1
 	less1:							;						0
-				PUSH 1				; 返回1					1
+				PUSH 1				; return 1				1
 				RET 1

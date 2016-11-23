@@ -1,32 +1,32 @@
-				; fibonacci.asm实现以下功能：
+				; fibonacci.asm:
 				; int fib(int n) {
 				;    if (n <= 1) return 1;
 				;    return fib(n-1) + fib(n-2)
 				; }
 				GLOBAL	fib
 				Extern	hellos
-				INNUM 				; 读取数字				1
+				INNUM
 				CALL fib
-				OUTNUM				;						2
+				OUTNUM
 				include "fibonaccisub.sfas"
 
-				PUSH 1				; 1入栈					2
-				SUB					; N-1					1
+				PUSH 1
+				SUB
 				CALL fib
-				LSTORE res			; 保存到res				2
-				POP 2				; 清理fib返回值及call之前压入的值 0
+				LSTORE res
+				POP 2
 
-				LPUSHP num			; num入栈				1
-				PUSH 2				; 1入栈					2
-				SUB					; N-2					1
-				CALL fib			; 取得fib(N-2)			2
-				LSTORE res2			; 保存到res				2
-				POP 2				; 清理fib返回值及call之前压入的值 0
+				LPUSHP num
+				PUSH 2
+				SUB
+				CALL fib
+				LSTORE res2
+				POP 2
 				
-				LPUSHP res			;						1
-				LPUSHP res2			;						2
-				ADD					; res+res2				1
+				LPUSHP res
+				LPUSHP res2
+				ADD
 				RET 1
-	less1:							;						0
-				PUSH 1				; 返回1					1
+	less1:
+				PUSH 1
 				RET 1

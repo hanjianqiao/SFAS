@@ -17,12 +17,12 @@
 	halt
 	
 hanoi:
-	local		n as 1		;参数
+	local		n as 1
 	local		a as 2
 	local		b as 3
 	local		c as 4
 	
-	pusht		1			;导入参数
+	pusht		1
 	lstore		c ;
 	pop			1
 	
@@ -38,7 +38,7 @@ hanoi:
 	lstore		n ;
 	pop			1
 	
-	lpushp		n			;比较n>1
+	lpushp		n
 	push		1
 	grt
 	jtruepop	great1 ;
@@ -81,7 +81,7 @@ hanoiend:
 move:
 	local		a as 1
 	local		c as 2
-	pusht		1			;导入参数
+	pusht		1
 	lstore		c ;
 	pop			1
 	
