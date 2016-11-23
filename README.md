@@ -1,4 +1,4 @@
 # SFAS
 Simple Foundation Assembler
 
-under go
+version 0.1: move to free playground linux
